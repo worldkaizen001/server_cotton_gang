@@ -1,16 +1,15 @@
 const express = require("express");
+const bodyParser = require('body-parser');
+require('dotenv').config();
+const studentRoutes = require("./src/todos/routes");
+const config = require('./config')
 
 const app = express();
+app.use(bodyParser.json()); 
 
-const port = 5000;
+const port = config.PORT;
 
-app.get('/home', (req, res)=>{
-    res.send("we are Home, Kay Kay Boy you go go far ooo boy");
-})
-
-app.get('/products', (req, res)=>{
-    res.send("this is a list of all productssi")
-})
+app.use("/api/vi/students",studentRoutes)
 
 app.listen(port, (req, res)=>{
     console.log("we are live on port" + port);
