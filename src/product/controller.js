@@ -1,17 +1,26 @@
 const pool = require("../db");
 const queries = require("./queries");
 
+const getOneProduct = (req, res)=>{
+    const  name  = req.params.name;
 
-const getStudents = (req, res)=>{
-    pool.query(queries.getallStudents, (error, results) => {
+    pool.query(queries.getOneProduct, [name] , (error,results) => {
+        if(error) throw error;
+
+        res.status(200).json(results.rows);
+    })
+}
+
+const getProducts = (req, res)=>{
+    pool.query(queries.getallProduct, (error, results) => {
         if(error) throw error;
         res.status(200).json(results.rows);
     })
 }
 
-const getStudentsById = (req, res)=>{
+const getProductById = (req, res)=>{
     const id = parseInt(req.params.id);
-    pool.query(queries.getStudentsbyId, [id] , (error, results) => {
+    pool.query(queries.getProductsbyId, [id] , (error, results) => {
         if(error) throw error;
         res.status(200).json(results.rows);
     })
@@ -26,7 +35,7 @@ const getReward = (req,res) => {
     })
 }
 
-const addStudent = (req,res)=>{
+const checkEmailExist= (req,res)=>{
 
     // const {name, email, age, dob} = req.body;
     const {task, reward} = req.body;
@@ -38,19 +47,19 @@ const addStudent = (req,res)=>{
     })
 }
 
-const addTodo = (req,res) => {
-    const {task, reward} = req.body;
-    pool.query(queries.addTodo, [task , reward], (error, results) => {
+const addProduct = (req,res) => {
+    const {name, description, price} = req.body;
+    pool.query(queries.addProduct, [name, description, price], (error, results) => {
         if(error) throw error;
-        res.status(201).send("todo was successfully created");
+        res.status(201).send("product was successfully Added");
 
     })
 }
 
-const removeStudent = (req,res)=>{
+const removeProduct = (req,res)=>{
     const id = parseInt(req.params.id);
 
-    pool.query(queries.getStudentsbyId, [id], (error, results)=>{
+    pool.query(queries.getProductsbyId, [id], (error, results)=>{
         const noStudentFound = !results.rows.length;
         if(noStudentFound){
             res.send("student does not exist");
@@ -65,11 +74,11 @@ const removeStudent = (req,res)=>{
 
 }
 
-const updateStudent = (req, res) =>{
+const updateProduct= (req, res) =>{
   const id = parseInt(req.params.id);
   const { task } = req.body;
 
-  pool.query(queries.getStudentsbyId, [id], (error, results)=>{
+  pool.query(queries.getProductsbyId, [id], (error, results)=>{
     const noStudentFound = !results.rows.length;
     if(noStudentFound){
         res.send("student does not exist");
@@ -86,11 +95,12 @@ const updateStudent = (req, res) =>{
 
 }
 module.exports = {
-    getStudents,
-    getStudentsById,
+    getProducts,
+    getProductById,
     getReward,
-    addStudent,
-    addTodo,
-    removeStudent,
-    updateStudent,
+    addProduct,
+    checkEmailExist,
+    removeProduct,
+    updateProduct,
+    getOneProduct,
 };
