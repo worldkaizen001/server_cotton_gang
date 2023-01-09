@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 const port = config.PORT;
 
 
-app.use("/api/vi/product",productRoutes)
+app.use("/api/v1/product",productRoutes)
 
 app.listen(port, (req, res)=>{
     console.log("we are live on port" + port);
