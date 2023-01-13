@@ -12,6 +12,8 @@ const pool = new Pool({
     database: config.PGDATABASE,
     password: config.PGPASSWORD,
     port: port,
+    idleTimeoutMillis: 0,
+    connectionTimeoutMillis: 0,
 
 });
 
