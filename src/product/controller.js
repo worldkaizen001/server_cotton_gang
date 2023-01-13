@@ -12,10 +12,12 @@ const getOneProduct = (req, res)=>{
 }
 
 const getProducts = (req, res)=>{
-    pool.query(queries.getallProduct, (error, results) => {
-        if(error) throw error;
-        res.status(200).json(results.rows);
-    })
+
+    res.send('we don dey live again o')
+    // pool.query(queries.getallProduct, (error, results) => {
+    //     if(error) throw error;
+    //     res.status(200).json(results.rows);
+    // })
 }
 
 const getProductById = (req, res)=>{
