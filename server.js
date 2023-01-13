@@ -7,7 +7,7 @@ const config = require('./config')
 const app = express();
 app.use(bodyParser.json()); 
 
-const port = config.PORT;
+const port = process.env.PORT || config.PORT;
 
 
 app.use("/api/v1/product",productRoutes)
