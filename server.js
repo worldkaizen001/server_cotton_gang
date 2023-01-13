@@ -14,12 +14,12 @@ app.use(cors());
 const port = process.env.PORT || config.PORT;
 
 
-app.get("/", controller.getProducts),
+// app.get("/", controller.getProducts),
 // app.get("/", (req, res)=>{
 //     res.send('we dey live o');
 // })
 
-// app.use("/api/v1/produc",productRoutes)
+app.use("/api/v1/product",productRoutes)
 
 app.listen(port, (req, res)=>{
     console.log("we are live on port" + port);
