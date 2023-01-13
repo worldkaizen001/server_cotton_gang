@@ -13,7 +13,7 @@ const getOneProduct = (req, res)=>{
 
 const getProducts = (req, res)=>{
     pool.query(queries.getallProduct, (error, results) => {
-        // if(error) throw error;
+        if(error) throw error;
         res.status(200).json(results.rows);
     })
 }
