@@ -1,4 +1,7 @@
-const config = require('../config')
+const config = require('../config');
+require('dotenv').config();
+const port = process.env.PORT || config.PGPORT;
+
 
 const Pool = require("pg").Pool;
 
@@ -8,7 +11,7 @@ const pool = new Pool({
     host: config.PGHOST,
     database: config.PGDATABASE,
     password: config.PGPASSWORD,
-    port: config.PGPORT
+    port: port,
 
 });
 
