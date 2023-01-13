@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 const port = process.env.PORT || config.PORT;
 
 
-app.get("/", (req, res)=> {
-    res.send("we are live on server");
-})
+// app.get("/", (req, res)=> {
+//     res.send("we are live on server");
+// })
 
-// app.use("/api/v1/product",productRoutes)
+app.use("/api/v1/product",productRoutes)
 
 app.listen(port, (req, res)=>{
     console.log("we are live on port" + port);
